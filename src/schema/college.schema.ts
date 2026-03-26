@@ -40,7 +40,19 @@ const baseCollegeSchema = z.object({
 
 // For CREATE - logo must be a File
 export const createCollegeSchema = baseCollegeSchema.extend({
-  logo: z.instanceof(File, { message: "Logo image is required" }),
+  logo: z
+    .instanceof(File, { message: "Logo image is required" })
+    .refine(
+      (file) =>
+        [
+          "image/jpeg",
+          "image/jpg",
+          "image/png",
+          "image/gif",
+          "image/webp",
+        ].includes(file.type),
+      "Only JPEG, PNG, GIF, and WebP images are allowed",
+    ),
 });
 
 // For UPDATE - logo can be File or existing image object

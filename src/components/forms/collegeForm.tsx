@@ -26,56 +26,14 @@ import {
   SelectValue,
 } from "../ui/select";
 import ProvienceAndCityData from "@/assets/proviences&cities.json";
-import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
+import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import L from "leaflet";
 import { useCreateCollege, useUpdateCollege } from "@/hooks/useColleges";
-
-// Fix for default markers in Leaflet with Next.js
-delete (L.Icon.Default.prototype as any)._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl:
-    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
-  iconUrl:
-    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
-  shadowUrl:
-    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
-});
-
-// Map container style
-const mapContainerStyle = {
-  height: "400px",
-  width: "100%",
-  borderRadius: "0.5rem",
-  zIndex: 1,
-};
-
-// Default center (Kathmandu)
-const defaultCenter: [number, number] = [27.7172, 85.324]; // [lat, lng]
-
-// Custom component for map click handling
-function LocationMarker({ position, onPositionChange }: any) {
-  useMapEvents({
-    click(e) {
-      onPositionChange([e.latlng.lat, e.latlng.lng]);
-    },
-  });
-
-  return position ? (
-    <Marker
-      position={position}
-      draggable={true}
-      eventHandlers={{
-        dragend: (e) => {
-          onPositionChange([
-            e.target.getLatLng().lat,
-            e.target.getLatLng().lng,
-          ]);
-        },
-      }}
-    />
-  ) : null;
-}
+import {
+  defaultCenter,
+  LocationMarker,
+  mapContainerStyle,
+} from "@/utils/leafletHelper";
 
 interface CollegeFormProps {
   initialData?: College | null;
@@ -111,7 +69,7 @@ export function CollegeForm({ initialData }: CollegeFormProps) {
           name: initialData.name,
           shortName: initialData.shortName,
           domain: initialData.domain,
-          logo: initialData.logo, // This is the logo object with url/publicId
+          logo: initialData.logo,
           location: {
             address: initialData.location?.address || "",
             city: initialData.location?.city || "",
@@ -129,7 +87,7 @@ export function CollegeForm({ initialData }: CollegeFormProps) {
           name: "",
           shortName: "",
           domain: "",
-          logo: undefined, // Will be set by file input
+          logo: undefined,
           location: {
             address: "",
             city: "",

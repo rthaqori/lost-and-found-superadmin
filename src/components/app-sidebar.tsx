@@ -21,6 +21,7 @@ import {
   Shield,
   UserCog,
   User,
+  Building,
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { cn } from "@/lib/utils";
@@ -43,6 +44,11 @@ const managementItems = [
     icon: Building2,
   },
   {
+    title: "All Zones",
+    path: "/zones",
+    icon: Building,
+  },
+  {
     title: "Admins",
     path: "/admins",
     icon: UserCog,
@@ -56,11 +62,6 @@ const managementItems = [
     title: "Posts",
     path: "/posts",
     icon: FileText,
-  },
-  {
-    title: "All Users",
-    path: "/users",
-    icon: Users,
   },
 ];
 
