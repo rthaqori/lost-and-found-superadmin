@@ -13,6 +13,8 @@ import ZonesPage from "./components/pages/zonesPage";
 import ZoneDetails from "./components/pages/zoneDetailsPage";
 import { Spinner } from "./components/ui/spinner";
 import { useAuth } from "./contexts/AuthContext";
+import DisputesPage from "./components/pages/DisputesPage";
+import DisputeDetailsPage from "./components/pages/DisputeDetails";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, isLoading } = useAuth();
@@ -137,6 +139,24 @@ const App = () => {
           element={
             <ProtectedRoute>
               <PostsPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/disputes"
+          element={
+            <ProtectedRoute>
+              <DisputesPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/disputes/:id"
+          element={
+            <ProtectedRoute>
+              <DisputeDetailsPage />
             </ProtectedRoute>
           }
         />
