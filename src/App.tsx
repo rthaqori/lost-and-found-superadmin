@@ -1,6 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import LoginPage from "./components/pages/loginPage";
-import DashboardPage from "./components/pages/dashboardPage";
 import CollegesPage from "./components/pages/college/collegesPage";
 import AdminsPage from "./components/pages/adminsPage";
 import StudentsPage from "./components/pages/studentsPage";
@@ -15,6 +14,8 @@ import { Spinner } from "./components/ui/spinner";
 import { useAuth } from "./contexts/AuthContext";
 import DisputesPage from "./components/pages/DisputesPage";
 import DisputeDetailsPage from "./components/pages/DisputeDetails";
+import StatsDashboard from "./components/pages/dashboardPage";
+import { PostDetailsPage } from "./components/pages/postDetailsPage";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, isLoading } = useAuth();
@@ -61,7 +62,7 @@ const App = () => {
           path="/"
           element={
             <ProtectedRoute>
-              <DashboardPage />
+              <StatsDashboard />
             </ProtectedRoute>
           }
         />
@@ -75,6 +76,7 @@ const App = () => {
               </ProtectedRoute>
             }
           />
+
           <Route
             path="add"
             element={
@@ -83,6 +85,7 @@ const App = () => {
               </ProtectedRoute>
             }
           />
+
           <Route
             path=":id/edit"
             element={
@@ -91,6 +94,7 @@ const App = () => {
               </ProtectedRoute>
             }
           />
+
           <Route
             path=":id"
             element={
@@ -109,6 +113,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/zones/:id"
           element={
@@ -126,6 +131,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/students"
           element={
@@ -134,11 +140,20 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/posts"
           element={
             <ProtectedRoute>
               <PostsPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/posts/:id"
+          element={
+            <ProtectedRoute>
+              <PostDetailsPage />
             </ProtectedRoute>
           }
         />

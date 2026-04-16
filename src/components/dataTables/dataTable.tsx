@@ -185,7 +185,7 @@ export function DataTable<TData>({
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results found.
+                  No results found. Try changing filters.
                 </TableCell>
               </TableRow>
             )}

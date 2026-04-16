@@ -22,6 +22,7 @@ import {
   UserCog,
   User,
   Building,
+  Scale,
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { cn } from "@/lib/utils";
@@ -62,6 +63,11 @@ const managementItems = [
     title: "Posts",
     path: "/posts",
     icon: FileText,
+  },
+  {
+    title: "Disputes",
+    path: "/disputes",
+    icon: Scale,
   },
 ];
 
