@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
-import { Edit, Trash2, Loader2 } from "lucide-react";
+import { Edit, Loader2 } from "lucide-react";
 
 // Shadcn imports
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -22,7 +22,6 @@ import { DeleteConfirmation } from "@/components/dialogs/deleteConfirmationDialo
 
 const CollegeDetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const [activeTab, setActiveTab] = useState("overview");
 
   const deleteCollege = useDeleteCollege();
 
@@ -108,11 +107,7 @@ const CollegeDetailsPage: React.FC = () => {
       </div>
 
       {/* Tabs Section */}
-      <Tabs
-        defaultValue="overview"
-        className="space-y-6"
-        onValueChange={setActiveTab}
-      >
+      <Tabs defaultValue="overview" className="space-y-6">
         <TabsList className="grid w-full grid-cols-5 lg:w-[600px]">
           <TabsTrigger value="overview">Overview</TabsTrigger>
           <TabsTrigger value="admins">

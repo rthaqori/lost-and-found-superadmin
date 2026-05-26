@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { format } from "date-fns";
-import { useAuth } from "@/contexts/AuthContext";
 import {
   useLostItem,
   useVerifyItem,

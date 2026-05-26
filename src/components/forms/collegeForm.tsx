@@ -61,7 +61,6 @@ export function CollegeForm({ initialData }: CollegeFormProps) {
     handleSubmit,
     formState: { errors, isSubmitting },
     setValue,
-    reset,
     watch,
     clearErrors,
   } = useForm<CollegeFormData | CreateCollegeFormData | UpdateCollegeFormData>({

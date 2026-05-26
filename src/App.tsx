@@ -16,6 +16,7 @@ import DisputesPage from "./components/pages/DisputesPage";
 import DisputeDetailsPage from "./components/pages/DisputeDetails";
 import StatsDashboard from "./components/pages/dashboardPage";
 import { PostDetailsPage } from "./components/pages/postDetailsPage";
+import CouponsPage from "./components/pages/couponsPage";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, isLoading } = useAuth();
@@ -172,6 +173,15 @@ const App = () => {
           element={
             <ProtectedRoute>
               <DisputeDetailsPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/coupons"
+          element={
+            <ProtectedRoute>
+              <CouponsPage />
             </ProtectedRoute>
           }
         />

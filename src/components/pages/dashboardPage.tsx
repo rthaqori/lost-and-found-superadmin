@@ -13,7 +13,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
@@ -31,7 +30,6 @@ import {
   TrendingDown,
   Minus,
   Calendar,
-  Download,
   Building2,
   CheckCircle,
   Eye,
@@ -163,7 +161,6 @@ export default function StatsDashboard() {
   const { user } = useAuth();
   const isSuperAdmin = user?.role === "super_admin";
   const [period, setPeriod] = useState<PeriodType>("month");
-  const [selectedCollege, setSelectedCollege] = useState<string>("all");
 
   // Queries
   const { data: dashboardData, isLoading: dashboardLoading } =

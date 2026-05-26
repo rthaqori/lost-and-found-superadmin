@@ -18,7 +18,7 @@ import {
 import { lostItemColumns } from "@/components/columns/lostItemColumns";
 import { DataTable } from "@/components/dataTables/dataTable";
 import { Button } from "@/components/ui/button";
-import { Plus, RefreshCw } from "lucide-react";
+import { RefreshCw } from "lucide-react";
 import type { LostItem } from "@/types/lostItem.types";
 import { useDebounce } from "@/utils/debounce";
 import { useGetColleges } from "@/hooks/useColleges";
