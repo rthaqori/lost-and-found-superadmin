@@ -10,24 +10,16 @@ import EditCollegePage from "./components/pages/college/editCollegePage";
 import CollegeDetailsPage from "./components/pages/college/collegeDetsilsPage";
 import ZonesPage from "./components/pages/zonesPage";
 import ZoneDetails from "./components/pages/zoneDetailsPage";
-import { Spinner } from "./components/ui/spinner";
 import { useAuth } from "./contexts/AuthContext";
 import DisputesPage from "./components/pages/DisputesPage";
 import DisputeDetailsPage from "./components/pages/DisputeDetails";
 import StatsDashboard from "./components/pages/dashboardPage";
 import { PostDetailsPage } from "./components/pages/postDetailsPage";
 import CouponsPage from "./components/pages/couponsPage";
+import { NotFoundPage } from "./components/pages/NotFoundPage";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
-  const { isAuthenticated, isLoading } = useAuth();
-
-  if (isLoading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <Spinner />
-      </div>
-    );
-  }
+  const { isAuthenticated } = useAuth();
 
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
@@ -38,15 +30,7 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 
 // Public Route wrapper (redirects if authenticated)
 function PublicRoute({ children }: { children: React.ReactNode }) {
-  const { isAuthenticated, isLoading } = useAuth();
-
-  if (isLoading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <Spinner />
-      </div>
-    );
-  }
+  const { isAuthenticated } = useAuth();
 
   if (isAuthenticated) {
     return <Navigate to="/" replace />;
@@ -194,6 +178,7 @@ const App = () => {
           </PublicRoute>
         }
       />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 };
